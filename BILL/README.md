@@ -1,4 +1,4 @@
-# BILL — where the money in your AI coding bill actually goes
+# BILL: where the money in your AI coding bill actually goes
 
 One command. It reads the transcripts your coding agent already writes to your
 own disk and tells you which part of the bill is doing the work.
@@ -40,7 +40,7 @@ the entire conversation again from the top. You pay for that re-read every
 single time. It is cheap per token and enormous in aggregate, because it grows
 with the length of the chat and you send it on every turn.
 
-**"Saving the chat"** is the flip side — writing that conversation into the
+**"Saving the chat"** is the flip side: writing that conversation into the
 cache so the next re-read is cheap. It is billed at a premium over plain input.
 Short-lived caches expire and get re-written; a chat you return to after a
 break pays this twice.
@@ -59,17 +59,17 @@ In rough order of how much they pay off.
 The cost of a message is set by how long the chat already is. A fresh chat is
 the single biggest lever, and it costs you nothing but the habit.
 
-**2. Don't leave the huge-context mode on by default.**
-Most tools have a setting for a much larger context window. Switch it on for the
-job that needs it, not for every job. Left on, chats grow because nothing stops
-them, and long chats are where the money is.
+**2. Look at what the chat is carrying.**
+In Claude Code, `/context` shows what fills the window right now: files, tool
+output, instructions. All of it is paid for again on every message, so whatever
+you don't need in there is cost and nothing else.
 
 **3. Do one thing per chat.**
 Two unrelated problems in one chat means every message about the second one is
 also paying to re-read the first one.
 
 **4. Re-measure after a week.**
-Run this again. If the shape didn't move, the habit didn't stick — that is
+Run this again. If the shape didn't move, the habit didn't stick. That is
 useful to know, and it is the reason this is a script and not a blog post.
 
 ---
@@ -84,9 +84,13 @@ useful to know, and it is the reason this is a script and not a blog post.
   the dollar total is hypothetical.
 - **The cache-write number is the optimistic one.** The script assumes the
   short-lived cache. If your sessions run long enough to use the longer-lived
-  one, that line is billed higher than shown — so the real cost of carrying the
+  one, that line is billed higher than shown, so the real cost of carrying the
   chat is *worse* than this prints, never better.
-- **It reads Claude Code's transcript location.** Another tool, another path —
+- **One answer, one count.** Claude Code logs a single answer as several lines
+  (text, each tool call) and repeats the usage on every one of them. The script
+  dedupes by message id. Copies from before 2026-11-05 summed every line and
+  overstate the dollar total, so grab the current file and run it again.
+- **It reads Claude Code's transcript location.** Another tool, another path:
   change `TRANSCRIPTS` at the top of the file.
 
 ---

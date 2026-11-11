@@ -4,13 +4,13 @@ Where does the money in your AI coding bill actually go?
 
 Reads the transcripts Claude Code already writes to disk and splits your usage
 into four buckets: what you typed, what it wrote back, and the two costs nobody
-looks at — re-reading the chat and saving the chat.
+looks at: re-reading the chat and saving the chat.
 
     python3 bill.py
 
 No dependencies. Nothing is uploaded. Nothing is written. It only reads.
 
-If you are on a subscription, you are not billed per token — this shows what the
+If you are on a subscription, you are not billed per token. This shows what the
 same work would have cost on the API. The *shape* is the same either way, and
 the shape is the point.
 """
@@ -23,7 +23,7 @@ import sys
 # Published list prices, US dollars per million tokens, checked 2026-08-17.
 #   input | output | cache read | cache write (5-minute)
 # Cache read is ~0.1x input. Cache write is 1.25x input on the 5-minute cache
-# and 2x on the 1-hour cache — this script assumes the 5-minute one, so if you
+# and 2x on the 1-hour cache. This script assumes the 5-minute one, so if you
 # run long sessions the real re-reading cost is *higher* than what you see here.
 # Prices move. Current list: https://platform.claude.com/docs/en/pricing
 RATES = {
@@ -64,7 +64,7 @@ def main():
 
     cost = {label: 0.0 for label, _, _ in BUCKETS}
     tokens = {label: 0 for label, _, _ in BUCKETS}
-    turns = 0
+    answers = {}
 
     for path in paths:
         try:
@@ -83,15 +83,23 @@ def main():
                 usage = message.get("usage")
                 if not usage:
                     continue
-                turns += 1
-                rates = RATES[family(message.get("model"))]
-                for label, field, index in BUCKETS:
-                    count = usage.get(field) or 0
-                    tokens[label] += count
-                    cost[label] += count / 1_000_000 * rates[index]
+                # One answer is written as several lines (text, tool call, ...)
+                # and every line repeats the same usage. Count each answer once,
+                # by its id, keeping the highest value per field.
+                key = message.get("id") or len(answers)
+                model, seen = answers.setdefault(key, (message.get("model"), {}))
+                for _, field, _ in BUCKETS:
+                    seen[field] = max(seen.get(field, 0), usage.get(field) or 0)
 
-    if not turns:
+    if not answers:
         sys.exit("Found transcript files but no usage records in them.")
+
+    for model, usage in answers.values():
+        rates = RATES[family(model)]
+        for label, field, index in BUCKETS:
+            tokens[label] += usage[field]
+            cost[label] += usage[field] / 1_000_000 * rates[index]
+    turns = len(answers)
 
     total_cost = sum(cost.values())
     total_tokens = sum(tokens.values())
