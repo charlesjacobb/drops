@@ -1,0 +1,27 @@
+{
+  "_comment": "Gate 02 · Deny floor. Merge the permissions.deny array into your existing settings.json — do not paste this file over it. Claude Code: ~/.claude/settings.json (global) or .claude/settings.json (per project). Deny must beat allow; verify that in your tool before trusting it.",
+
+  "permissions": {
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/*credential*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/id_rsa*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.netrc)",
+      "Read(~/.npmrc)",
+
+      "Bash(rm -rf /*)",
+      "Bash(sudo rm*)",
+      "Bash(git push --force*)",
+      "Bash(curl*|*sh)",
+      "Bash(env)",
+      "Bash(printenv)"
+    ]
+  }
+}
