@@ -1,6 +1,6 @@
 ---
 name: your-skill-name
-description: What this does, in one sentence. Then: use when the user says X, asks for Y, or mentions Z. The second half is the trigger — it is what gets matched, so write the words a real person would actually type.
+description: What this does, in one sentence. Then: use when the user says X, asks for Y, or mentions Z. The second half is the trigger. It is what gets matched, so write the words a real person would actually type.
 ---
 
 # What this is
@@ -24,5 +24,5 @@ particular routine.
 # Done when
 
 The finish line, stated so it can be checked rather than felt. If you cannot
-write this line, the routine is not ready to be a skill yet — it is still a
+write this line, the routine is not ready to be a skill yet. It is still a
 conversation.

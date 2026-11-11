@@ -1,9 +1,9 @@
-# GATES — the four locks every unsupervised agent needs
+# GATES: the four locks every unsupervised agent needs
 
 An agent you watch is a tool. An agent you don't watch is a system, and a system
 needs stops. These are the four, in the order you should build them.
 
-None of them asks you a question. That is the whole point — a gate that needs
+None of them asks you a question. That is the whole point. A gate that needs
 your attention is not a gate, it is a notification.
 
 Gate one costs nothing and takes a minute. Build it before you leave the room.
@@ -19,7 +19,7 @@ Gate one costs nothing and takes a minute. Build it before you leave the room.
 [ -f ~/.agents.disabled ] && exit 0
 ```
 
-Stop the whole fleet from anywhere — another terminal, your phone over SSH, a
+Stop the whole fleet from anywhere: another terminal, your phone over SSH, a
 shortcut:
 
 ```bash
@@ -38,7 +38,7 @@ kill switch you reach after the expensive part is a receipt, not a switch.
 
 ## Gate 02 · Deny floor
 
-**Some paths are never readable. Not "ask first" — never.**
+**Some paths are never readable. Not "ask first". Never.**
 
 Credentials should not be one prompt-injection away from an agent's context. In
 Claude Code this lives in `settings.json` (see [`settings.deny.json`](settings.deny.json)
@@ -86,7 +86,7 @@ CAP=10.00
 
 spent=$(cat "$SPEND_FILE" 2>/dev/null || echo 0)
 if awk -v s="$spent" -v c="$CAP" 'BEGIN{exit !(s>=c)}'; then
-    echo "day cap reached: \$$spent — stopping"
+    echo "day cap reached: \$$spent, stopping"
     exit 0
 fi
 
@@ -109,7 +109,7 @@ The date in the filename is the reset. No cron job, no cleanup.
 
 **Two at once, not twenty.**
 
-Concurrency is where a small mistake becomes a large one — same bug, running
+Concurrency is where a small mistake becomes a large one: same bug, running
 nine times, against the same files.
 
 ```bash

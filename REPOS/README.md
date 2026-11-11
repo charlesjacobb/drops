@@ -1,4 +1,4 @@
-# REPOS — four open source projects that run a one-person company
+# REPOS: four open source projects that run a one-person company
 
 All four are free. All four are open source. No Canva, no Notion AI, no
 $49/month tool.
@@ -7,11 +7,11 @@ Here they are with the exact setup.
 
 ---
 
-## 01 · gstack — skills that start themselves
+## 01 · gstack: skills that start themselves
 
 **<https://github.com/garrytan/gstack>**
 
-A stack of engineering skills for your coding agent — review, QA, ship,
+A stack of engineering skills for your coding agent: review, QA, ship,
 security, planning. You don't invoke them. You describe what you're doing and
 the right one loads itself.
 
@@ -24,16 +24,16 @@ git clone --single-branch --depth 1 \
   && cd ~/.claude/skills/gstack && ./setup
 ```
 
-Needs Claude Code, Git and Bun. Then just work — `/review`, `/qa` and `/ship`
+Needs Claude Code, Git and Bun. Then just work. `/review`, `/qa` and `/ship`
 are there when you want to call one directly.
 
 ---
 
-## 02 · defuddle — any link, clean text, no tab open
+## 02 · defuddle: any link, clean text, no tab open
 
 **<https://github.com/kepano/defuddle>**
 
-Point it at a URL, get back clean Markdown — the article, without the nav, the
+Point it at a URL, get back clean Markdown: the article, without the nav, the
 cookie banner, the newsletter modal, the related-posts grid.
 
 ```bash
@@ -46,7 +46,7 @@ of the text, and you can read what the model is about to read.
 
 ---
 
-## 03 · Playwright — render, don't design
+## 03 · Playwright: render, don't design
 
 **<https://github.com/microsoft/playwright>**
 
@@ -62,12 +62,12 @@ Write the layout in HTML and CSS once, feed it data, screenshot it at whatever
 size you need. Every graphic comes out pixel-identical, and changing the brand
 colour is one line, not thirty files.
 
-It also means your visuals live in git — diffable, reviewable, revertable.
+It also means your visuals live in git: diffable, reviewable, revertable.
 Design tools do not give you that.
 
 ---
 
-## 04 · Caddy — one config file, every site you own
+## 04 · Caddy: one config file, every site you own
 
 **<https://github.com/caddyserver/caddy>**
 
@@ -114,5 +114,5 @@ Build → read → produce → deliver. That's a company.
 
 ---
 
-Each project has its own licence — check before you ship commercially.
+Each project has its own licence. Check before you ship commercially.
 This page is MIT.
